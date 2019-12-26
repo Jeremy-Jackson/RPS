@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+
+    <head>
+      <meta charset="utf-8">
+      <title>Rock, Paper, Scissors</title>
+    </head>
+
+    <body>
+      <script>
+        let playerScore = 0;
+        let computerScore = 0;
+        let playerSelection;
+        computerSelection = computerPlay();
+
+        function computerPlay() {
+          let rand = Math.floor((Math.random() * 3) + 1);
+          if (rand == 1) {
+            return "rock";
+          } else if (rand == 2) {
+            return "paper";
+          } else {
+            return "scissors";
+          }
+        }
+        /*
+          Rock beats: Scissors
+        */
+        function playRound(playerSelection, computerSelection) {
+          playerSelection = prompt("Enter rock, paper or scissors: ").toLowerCase();
+
+          if ((playerSelection == "rock" && computerSelection == "rock") ||
+            (playerSelection == "paper" && computerSelection == "paper") ||
+            (playerSelection == "scissors" && computerSelection == "scissors")) {
+            return "It's a tie! Play again.";
+          } else if ((playerSelection == "rock" && computerSelection == "scissors") ||
+            (playerSelection == "paper" && computerSelection == "rock") ||
+            (playerSelection == "scissors" && computerSelection == "paper")) {
+            playerScore++;
+            return "You won this round!\nPlayer: " + playerScore + "\nComputer: " + computerScore;
+          } else if ((computerSelection == "rock" && playerSelection == "scissors") ||
+            (computerSelection == "paper" && playerSelection == "rock") ||
+            (computerSelection == "scissors" && playerSelection == "paper")) {
+            computerScore++;
+            return "Computer won this round!\nPlayer: " + playerScore + "\nComputer: " + computerScore;
+          } else {
+                return "You have to choose your weapon!";
+            }
+        }
+
+        function play(){
+          while (playerScore <= 3 && computerScore <= 3){
+            alert(playRound(playerSelection, computerPlay()));
+            if (playerScore == 3) {
+              alert("You win! Final score - Player: " + playerScore + " Computer: " + computerScore);
+              break;
+            } else if (computerScore == 3) {
+              alert("Computer wins! Final score - Player: " + playerScore + " Computer: " + computerScore);
+              break;
+            }
+          }
+        }
+
+        play();
+      </script>
+    </body>
+
+    </html>
